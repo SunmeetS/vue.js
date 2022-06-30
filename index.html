@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Vue 3 Basics</title>
+
+    <style>
+        .box {
+            border-radius: 1000px 1000px;
+            position: fixed;
+            left: 20vw;
+            height: 40vh;
+            width: 40vh;
+            box-shadow: -3px 4vh 5vh red, 1em -1vh 0.4em olive;
+            background-image: linear-gradient(rgb(222, 119, 228),rgb(61, 73, 246));
+        }
+
+        .box2 {
+            background-color: purple;
+            height: 60vh;
+        }
+
+        .box3 {
+            background-color: blue;
+            height: 40vh;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id='app' v-cloak>
+        {{greetings}}
+        <input @keydown.enter = "greet(greetings)" v-model="greetings" />
+        <hr />
+
+        <div v-if="isVisible" class="box"></div>
+        <button v-on:click = "isVisible = !isVisible" > Toggle Button</button>
+        <!-- <div v-else-if="isVisible2" class="box2"></div>
+        <div v-else class="box3"></div>  -->
+        <!-- Checks if condition is true then renders it else doesn't -->
+
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+        let app = Vue.createApp({
+            data: function () {
+                return {
+                    greetings: "Hello Vue 3!",
+                    isVisible: false
+                }
+            },
+                    methods: {
+
+                        function (){ 
+                            this.isVisible = !this.isVisible
+                        },
+                        greet(greeting){
+                            console.log(greeting)
+                        }
+                        }
+                    // isVisible2: false,
+                }
+            
+        )
+        app.mount('#app')
+    </script>
+
+</body>
+
+</html>
